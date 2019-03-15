@@ -12,7 +12,7 @@ class BLEHelper():
         self.bleno.on('advertisingStart', self.onAdvertisingStart)
         self.bleno.start()
 
-    def onStateChange(state):
+    def onStateChange(self, state):
         print('on -> stateChange: ' + state);
 
         if (state == 'poweredOn'):
@@ -20,7 +20,7 @@ class BLEHelper():
         else:
             self.bleno.stopAdvertising();
 
-    def onAdvertisingStart(error):
+    def onAdvertisingStart(self, error):
         print('on -> advertisingStart: ' + ('error ' + error if error else 'success'));
 
         if not error:
@@ -33,10 +33,10 @@ class BLEHelper():
                 })
             ])
 
-    def start():
+    def start(self):
         self.bleno.start()
 
-    def stop():
+    def stop(self):
         self.bleno.stopAdvertising()
         self.bleno.disconnect()
 
