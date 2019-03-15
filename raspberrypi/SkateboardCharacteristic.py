@@ -27,8 +27,7 @@ class SkateboardCharacteristic(Characteristic):
         # hardcoded
         print('SkateboardCharacteristic - %s - onWriteRequest: value = %s' % (self['uuid'], [hex(c) for c in self._value]))
         print('data:', data)
-        print('strdata:', str(data))
-        command = str(data)
+        command = data.decode()
         self.appState.direction = command
 
         if self._updateValueCallback:
