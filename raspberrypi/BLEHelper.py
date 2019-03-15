@@ -28,7 +28,7 @@ class BLEHelper():
                 BlenoPrimaryService({
                     'uuid': 'ec00',
                     'characteristics': [ 
-                        SkateboardCharacteristic('ec0F')
+                        SkateboardCharacteristic('ec0F', self.appState)
                     ]
                 })
             ])
