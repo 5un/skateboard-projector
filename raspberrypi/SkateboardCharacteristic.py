@@ -5,9 +5,9 @@ import sys
 import traceback
 from builtins import str
 
-class SkateboardCharacteristic(Characteristic, appState):
+class SkateboardCharacteristic(Characteristic):
     
-    def __init__(self, uuid):
+    def __init__(self, uuid, appState):
         Characteristic.__init__(self, {
             'uuid': uuid,
             'properties': ['read', 'write', 'notify'],
@@ -26,7 +26,7 @@ class SkateboardCharacteristic(Characteristic, appState):
         
         # hardcoded
         print('SkateboardCharacteristic - %s - onWriteRequest: value = %s' % (self['uuid'], [hex(c) for c in self._value]))
-        appState.direction = data
+        self.appState.direction = data
 
         if self._updateValueCallback:
             print('SkateboardCharacteristic - onWriteRequest: notifying');
