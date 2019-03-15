@@ -47,7 +47,7 @@ while not crashed:
       crashed = True
     elif event.type == pygame.KEYDOWN:
       # Close on escape button
-      if event.key == pygame.key.K_ESCAPE:
+      if event.key == pygame.K_ESCAPE:
         pygame.quit()
 
   gameDisplay.fill(white)
