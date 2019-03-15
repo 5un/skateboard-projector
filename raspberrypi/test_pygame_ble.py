@@ -51,7 +51,7 @@ while not crashed:
         pygame.quit()
 
   gameDisplay.fill(white)
-  drawArrow(appState.direction)
+  drawArrow(0,0,appState.direction)
 
   pygame.display.update()
   clock.tick(60)
