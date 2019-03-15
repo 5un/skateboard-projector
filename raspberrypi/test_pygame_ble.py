@@ -6,7 +6,7 @@ class AppState():
     def __init__(self):
         self.direction = 'left'
 
-    def setDirection(newDirection):
+    def setDirection(self, newDirection):
         self.direction = newDirection
 
 """Initializes the app"""
@@ -52,6 +52,7 @@ while not crashed:
 
   gameDisplay.fill(white)
   drawArrow(0,0,appState.direction)
+  print('dir', appState.direction)
 
   pygame.display.update()
   clock.tick(60)
