@@ -10,9 +10,6 @@ class AppState():
     self.pressure = (0.0, 0.0)
     self.isUserOnBoard = False
 
-  def setDirection(self, newDirection):
-    self.direction = newDirection
-
 """Initialize the app"""
 appState = AppState()
 

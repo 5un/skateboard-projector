@@ -8,10 +8,8 @@ class AppState():
   def __init__(self):
     self.direction = 'left'
     self.acceleration = (0.0, 0.0, 0.0)
+    self.pressure = (0.0, 0.0)
     self.isUserOnBoard = False
-
-  def setDirection(self, newDirection):
-    self.direction = newDirection
 
 """Initialize the app"""
 appState = AppState()
