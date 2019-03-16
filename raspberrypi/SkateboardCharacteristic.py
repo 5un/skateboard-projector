@@ -3,6 +3,7 @@ import array
 import struct
 import sys
 import traceback
+import json
 from builtins import str
 
 class SkateboardCharacteristic(Characteristic):
@@ -20,7 +21,9 @@ class SkateboardCharacteristic(Characteristic):
     def onReadRequest(self, offset, callback):
         print('SkateboardCharacteristic - %s - onReadRequest: value = %s' % (self['uuid'], [hex(c) for c in self._value]))
         # TODO send back the app state
-        callback(Characteristic.RESULT_SUCCESS, self._value)
+        sensorData = {"acceleration": self.appState.acceleration, 
+            "pressure": self.appState.pressure}
+        callback(Characteristic.RESULT_SUCCESS, json.dumps(sensorData).encode())
 
     def onWriteRequest(self, data, offset, withoutResponse, callback):
         self._value = data
