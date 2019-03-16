@@ -12,6 +12,8 @@ class SensorHelper():
     self.board.analog[0].enable_reporting()
     self.board.analog[1].enable_reporting()
     self.board.analog[2].enable_reporting()
+    self.board.analog[3].enable_reporting()
+    self.board.analog[4].enable_reporting()
     self.acceleration = (0.0, 0.0, 0.0)
     self.pressure = (0.0, 0.0)
 
@@ -19,12 +21,14 @@ class SensorHelper():
     xr = board.analog[0].read()
     yr = board.analog[1].read()
     zr = board.analog[2].read()
+    f1 = board.analog[3].read()
+    f2 = board.analog[4].read()
     if (xr is not None) and (yr is not None) and (zr is not None):
       self.acceleration[0] = (xr - 0.5) * 3.0
       self.acceleration[1] = (yr - 0.5) * 3.0
       self.acceleration[2] = (zr - 0.5) * 3.0
       appState.acceleration = self.acceleration
-    
+      appState.pressure = self.pressure
     board.pass_time(seconds)
 
     # Also read sensor
