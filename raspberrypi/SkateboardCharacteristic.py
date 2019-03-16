@@ -19,6 +19,7 @@ class SkateboardCharacteristic(Characteristic):
           
     def onReadRequest(self, offset, callback):
         print('SkateboardCharacteristic - %s - onReadRequest: value = %s' % (self['uuid'], [hex(c) for c in self._value]))
+        # TODO send back the app state
         callback(Characteristic.RESULT_SUCCESS, self._value)
 
     def onWriteRequest(self, data, offset, withoutResponse, callback):
