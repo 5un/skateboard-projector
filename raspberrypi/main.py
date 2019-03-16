@@ -2,6 +2,7 @@ import time
 import pygame
 from BLEHelper import *
 from SensorHelper import *
+from sprites.Arrow import *
 
 """Defines the state of the app"""
 class AppState():
