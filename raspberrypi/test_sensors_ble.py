@@ -17,18 +17,15 @@ class AppState():
 appState = AppState()
 
 """Initialize connection with arduino"""
-sensorHelper = sensorHelper(appState)
+sensorHelper = SensorHelper(appState)
 
 """Initialize BLE"""
 bleHelper = BLEHelper(appState)
 
-"""Initialize Pygame"""
-pygame.init()
-
 while True:
-  print(appState.acceleration, appState.pressure)
+  print('sensors:', appState.acceleration, appState.pressure)
   sensorHelper.tick(0.5)
-  sleep(0.5)
+  # time.sleep(0.5)
 
 bleHelper.stop()
 quit()
