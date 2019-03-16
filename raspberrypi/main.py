@@ -15,7 +15,7 @@ class AppState():
 appState = AppState()
 
 """Initialize connection with arduino"""
-sensorHelper = sensorHelper(appState)
+sensorHelper = SensorHelper(appState)
 
 """Initialize BLE"""
 bleHelper = BLEHelper(appState)
@@ -56,6 +56,7 @@ while not crashed:
 
   pygame.display.update()
   clock.tick(60)
+  myArrow.tick()
   sensorHelper.tick(0.060)
 
 pygame.quit()
