@@ -36,10 +36,12 @@ black = (0,0,0)
 white = (255,255,255)
 
 clock = pygame.time.Clock()
+timeElapsed = 0
 crashed = False
 
 x = (display_width * 0)
 y = (display_height * 0)
+
 
 while not crashed:
   for event in pygame.event.get():
@@ -56,9 +58,15 @@ while not crashed:
   myArrow.draw(gameDisplay)  
 
   pygame.display.update()
-  clock.tick(60)
+  clock.tick(40)
   myArrow.tick()
-  sensorHelper.tick(0.060)
+
+  if timeElapsed < 500: 
+    timeElapsed = timeElapsed + 25
+  else:
+    sensorHelper.tick(0.5)
+    timeElapsed = 0
+  
 
 pygame.quit()
 bleHelper.stop()
