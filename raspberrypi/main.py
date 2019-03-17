@@ -58,11 +58,11 @@ while not crashed:
   myArrow.draw(gameDisplay)  
 
   pygame.display.update()
-  clock.tick(40)
+  clock.tick(30)
   myArrow.tick()
 
   if timeElapsed < 500: 
-    timeElapsed = timeElapsed + 25
+    timeElapsed = timeElapsed + 30
   else:
     sensorHelper.tick(0.5)
     timeElapsed = 0

@@ -29,7 +29,7 @@ class SensorHelper():
       zg = (zr - 0.5) * 3.0
       self.appState.acceleration = self.acceleration = (xg, yg, zg)
       self.appState.pressure = self.pressure = (f1, f2)
-    self.board.pass_time(seconds)
+    # self.board.pass_time(seconds)
 
     # Also read sensor
 
