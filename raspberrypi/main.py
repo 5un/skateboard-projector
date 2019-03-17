@@ -66,7 +66,8 @@ while not crashed:
 
   pygame.display.update()
   clock.tick()
-  myArrow.tick()
+  # myArrow.tick()
+  cat.tick()
 
   if timeElapsed < 500: 
     timeElapsed = timeElapsed + 30
