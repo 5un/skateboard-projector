@@ -3,6 +3,7 @@ import pygame
 from BLEHelper import *
 from SensorHelper import *
 from sprites.Arrow import *
+from sprites.Cat import *
 
 """Defines the state of the app"""
 class AppState():
@@ -32,6 +33,9 @@ pygame.display.set_caption('Moving On')
 myArrow = Arrow(640, 480, speed=20)
 myArrow.direction = 'right'
 
+cat = Cat(640,480, speed=20)
+cat.direction = 'left'
+
 black = (0,0,0)
 white = (255,255,255)
 
@@ -54,8 +58,11 @@ while not crashed:
 
   gameDisplay.fill(white)
   
-  myArrow.direction = appState.direction
-  myArrow.draw(gameDisplay)  
+  # myArrow.direction = appState.direction
+  # myArrow.draw(gameDisplay)  
+
+  cat.direction = appState.direction
+  cat.draw(gameDisplay)
 
   pygame.display.update()
   clock.tick()
