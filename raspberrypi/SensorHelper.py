@@ -7,8 +7,8 @@ class SensorHelper():
 
     self.board = Arduino('/dev/ttyACM0')
 
-    it = util.Iterator(self.board)
-    it.start()
+    self.it = util.Iterator(self.board)
+    self.it.start()
     self.board.analog[0].enable_reporting()
     self.board.analog[1].enable_reporting()
     self.board.analog[2].enable_reporting()
@@ -29,9 +29,6 @@ class SensorHelper():
       zg = (zr - 0.5) * 3.0
       self.appState.acceleration = self.acceleration = (xg, yg, zg)
       self.appState.pressure = self.pressure = (f1, f2)
-    # self.board.pass_time(seconds)
-
-    # Also read sensor
 
 
 

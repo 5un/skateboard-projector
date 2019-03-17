@@ -23,11 +23,11 @@ bleHelper = BLEHelper(appState)
 
 """Initialize Pygame"""
 pygame.init()
-myArrow = Arrow(800, 600, speed=20)
+myArrow = Arrow(640, 480, speed=20)
 myArrow.direction = 'right'
 
-display_width = 800
-display_height = 600
+display_width = 640
+display_height = 480
 
 gameDisplay = pygame.display.set_mode((display_width,display_height), pygame.FULLSCREEN)
 pygame.display.set_caption('Moving On')
@@ -58,8 +58,10 @@ while not crashed:
   myArrow.draw(gameDisplay)  
 
   pygame.display.update()
-  clock.tick(30)
+  clock.tick(25)
   myArrow.tick()
+
+  print(appState.pressure)
 
   if timeElapsed < 500: 
     timeElapsed = timeElapsed + 30

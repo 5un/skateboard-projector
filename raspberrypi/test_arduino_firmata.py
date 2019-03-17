@@ -16,5 +16,6 @@ while True:
 		yg = (yr - 0.5) * 3.0
 		zg = (zr - 0.5) * 3.0
 		print(xg, yg, zg)
-	board.pass_time(0.5)
+	# board.pass_time(0.5)
+	# board.iterate()
 	time.sleep(0.5)
