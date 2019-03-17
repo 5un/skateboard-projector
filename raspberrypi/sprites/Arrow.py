@@ -6,10 +6,10 @@ class Arrow():
     self.width = width
     self.height = height
     self.speed = speed
-    self.arrowLeftImg = pygame.image.load('assets/arrow_left.png')
+    self.arrowLeftImg = pygame.image.load('assets/arrow_left.png').convert()
     self.arrowLeftImg = pygame.transform.scale(self.arrowLeftImg, (self.width, self.height))
 
-    self.arrowRightImg = pygame.image.load('assets/arrow_right.png')
+    self.arrowRightImg = pygame.image.load('assets/arrow_right.png').convert()
     self.arrowRightImg = pygame.transform.scale(self.arrowRightImg, (self.width, self.height))
     self.x = 0
     self.y = 0

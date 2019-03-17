@@ -22,7 +22,7 @@ bleHelper = BLEHelper(appState)
 while True:
   print('sensors:', appState.acceleration, appState.pressure)
   sensorHelper.tick(0.5)
-  # time.sleep(0.5)
+  time.sleep(0.5)
 
 bleHelper.stop()
 quit()
