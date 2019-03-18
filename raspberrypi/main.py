@@ -132,6 +132,8 @@ while not crashed:
       navigationStartSpeech.play()
     if appState.displayMode == 'navigation_right':
       navigationDirectionSpeech.play()
+    if appState.displayMode == 'navigation_backward':
+      beepEffect.play()
     timeStateUnchanged = 0
   else:
     timeStateUnchanged += clock.get_time()
