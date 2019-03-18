@@ -5,7 +5,7 @@ class ImageSwitcher():
   def __init__(self, width, height):
     self.width = width
     self.height = height
-    self.speed = speed
+    # self.speed = speed
     self.sprites = {}
     
     spriteInfo =[
