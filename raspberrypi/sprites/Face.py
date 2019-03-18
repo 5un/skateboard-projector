@@ -25,8 +25,8 @@ class Face():
   #     self.currentFace = self.FaceImg;
 
   def happy(self, gameDisplay):
-    self.currentFace = self.FaceImg;
+    self.currentFace = self.FaceImg2;
 
 
   def sad(self, gameDisplay):
-    self.currentFace = self.FaceImg2;
+    self.currentFace = self.FaceImg;

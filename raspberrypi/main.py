@@ -50,7 +50,11 @@ cat.direction = 'left'
 
 face = Face(display_width, display_height, gameDisplay, speed=20)
 
-navigationStartFrames = ['assets/text-display-eta.png','assets/text-15-mins.png']
+navigationStartFrames = ['assets/map-zoom0.png',
+  'assets/map-zoom1.png',
+  'assets/map-zoom2.png',
+  'assets/map-zoom3.png',
+  'assets/map-zoom4.png']
 navigationStart = FrameAnimation(display_width, display_height, frames=navigationStartFrames)
 
 navigationEtaFrames = ['assets/text-display-eta.png','assets/text-15-mins.png']
@@ -90,11 +94,11 @@ while not crashed:
     gameDisplay.blit(face.currentFace, (0, 0))
 
   if appState.displayMode == 'navigation_start':
-    navigationStart.draw(displayMode)
+    navigationStart.draw(gameDisplay)
     navigationStart.tick(20)
 
   if appState.displayMode == 'navigation_eta':
-    navigationEta.draw(displayMode)
+    navigationEta.draw(gameDisplay)
     navigationEta.tick(20)
 
   if appState.displayMode in ['navigation_left', 'navigation_right', 'navigation_forward', 'navigation_backward']:
