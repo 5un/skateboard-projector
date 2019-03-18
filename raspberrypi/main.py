@@ -27,6 +27,7 @@ class AppState():
 """Initialize the app"""
 appState = AppState()
 previousDisplayMode = 'sleep'
+timeStateUnchanged = 0
 
 """Initialize connection with arduino"""
 if useSensor:
@@ -68,6 +69,9 @@ imageSwitcher = ImageSwitcher(display_width, display_height)
 
 # Sound
 beepEffect = pygame.mixer.Sound('assets/beep-05.wav')
+navigationStartSpeech = pygame.mixer.Sound('audio/map_state.wav')
+sadFaceSpeech1 = pygame.mixer.Sound('audio/sad_face_state.wav')
+sadFaceSpeech2 = pygame.mixer.Sound('audio/sad_face_state_2.wav')
 
 black = (0,0,0)
 white = (255,255,255)
@@ -122,7 +126,16 @@ while not crashed:
   # Sound
   if appState.displayMode != previousDisplayMode:
     if appState.displayMode == 'sad':
-      beepEffect.play()
+      sadFaceSpeech2.play()
+    if appState.displayMode == 'navigation_start':
+      navigationStartSpeech.play()
+    timeStateUnchanged = 0
+  else:
+    timeStateUnchanged += clock.get_time()
+    if appState.displayMode == 'sad':
+      if timeStateUnchanged > 3000:
+        sadFaceSpeech1.play()
+        timeStateUnchanged = 0
 
   previousDisplayMode = appState.displayMode
 
