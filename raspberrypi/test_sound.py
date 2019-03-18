@@ -28,7 +28,7 @@ def draw_right_arrow(x,y):
 x = (display_width * 0)
 y = (display_height * 0)
 
-effect = pygame.mixer.Sound('assets/beep-05.wav')
+effect = pygame.mixer.Sound('audio/sad_face_state_2.wav')
 effect.play()
 
 while not crashed:
