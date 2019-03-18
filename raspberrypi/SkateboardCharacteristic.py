@@ -31,13 +31,16 @@ class SkateboardCharacteristic(Characteristic):
         # hardcoded
         print('SkateboardCharacteristic - %s - onWriteRequest: value = %s' % (self['uuid'], [hex(c) for c in self._value]))
         print('data:', data)
-        command = data.decode()
-        self.appState.direction = command
+        command = data.decode().split()
+        
+        if len(command) >= 2:
+            if command[0] in ['display', 'displayMode']:
+                self.appState.displayMode = command[1]
 
-        if self._updateValueCallback:
-            print('SkateboardCharacteristic - onWriteRequest: notifying');
+        # if self._updateValueCallback:
+        #     print('SkateboardCharacteristic - onWriteRequest: notifying');
             
-            self._updateValueCallback(self._value)
+        #     self._updateValueCallback(self._value)
         
         callback(Characteristic.RESULT_SUCCESS)
         

@@ -13,16 +13,17 @@ class Cat():
     self.direction = 'left'
 
   def tick(self):
-    if self.direction == 'left':
-      if self.x > -self.width:
-        self.x = self.x - self.speed
-      else:
-        self.x = self.width
-    else:
-      if self.x < self.width:
-        self.x = self.x + self.speed
-      else:
-        self.x = -self.width
+    # if self.direction == 'left':
+    #   if self.x > -self.width:
+    #     self.x = self.x - self.speed
+    #   else:
+    #     self.x = self.width
+    # else:
+    #   if self.x < self.width:
+    #     self.x = self.x + self.speed
+    #   else:
+    #     self.x = -self.width
+    pass
 
   def draw(self, gameDisplay):
     if self.direction == 'left':

@@ -4,10 +4,20 @@ from BLEHelper import *
 from SensorHelper import *
 from sprites.Arrow import *
 from sprites.Cat import *
+from sprites.Face import *
+from sprites.FrameAnimation import *
+
+"""Global Params"""
+useSensor = True
+useBle = True
 
 """Defines the state of the app"""
 class AppState():
   def __init__(self):
+    self.displayMode = 'sleep' 
+      # displayModes: sleep, sad, happy, navigation_start, navigation_eta
+      #                 navigation_left, navigation_right, navigation_forward, navigation_backward,
+      #                 lol, heart
     self.direction = 'left'
     self.acceleration = (0.0, 0.0, 0.0)
     self.pressure = (0.0, 0.0)
@@ -17,10 +27,12 @@ class AppState():
 appState = AppState()
 
 """Initialize connection with arduino"""
-sensorHelper = SensorHelper(appState)
+if useSensor:
+  sensorHelper = SensorHelper(appState)
 
 """Initialize BLE"""
-bleHelper = BLEHelper(appState)
+if useBle:
+  bleHelper = BLEHelper(appState)
 
 """Initialize Pygame"""
 pygame.init()
@@ -30,11 +42,19 @@ display_height = 480
 gameDisplay = pygame.display.set_mode((display_width,display_height), pygame.FULLSCREEN)
 pygame.display.set_caption('Moving On')
 
-myArrow = Arrow(640, 480, speed=20)
-myArrow.direction = 'right'
+arrow = Arrow(display_width, display_height, speed=20)
+arrow.direction = 'right'
 
-cat = Cat(640,480, speed=20)
+cat = Cat(display_width,display_height, speed=20)
 cat.direction = 'left'
+
+face = Face(display_width, display_height, gameDisplay, speed=20)
+
+navigationStartFrames = ['assets/text-display-eta.png','assets/text-15-mins.png']
+navigationStart = FrameAnimation(display_width, display_height, frames=navigationStartFrames)
+
+navigationEtaFrames = ['assets/text-display-eta.png','assets/text-15-mins.png']
+navigationEta = FrameAnimation(display_width, display_height, frames=navigationEtaFrames)
 
 black = (0,0,0)
 white = (255,255,255)
@@ -46,7 +66,7 @@ crashed = False
 x = (display_width * 0)
 y = (display_height * 0)
 
-
+# Main loop
 while not crashed:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
@@ -57,26 +77,50 @@ while not crashed:
         pygame.quit()
 
   gameDisplay.fill(white)
-  
-  # myArrow.direction = appState.direction
-  # myArrow.draw(gameDisplay)  
 
-  cat.direction = appState.direction
-  cat.draw(gameDisplay)
+  if appState.displayMode == 'sleep':
+    cat.draw(gameDisplay)
+    cat.tick()
+
+  if appState.displayMode in ['sad', 'happy']:
+    if appState.displayMode == 'sad':
+      face.sad(gameDisplay)
+    elif appState.displayMode == 'happy':
+      face.happy(gameDisplay)
+    gameDisplay.blit(face.currentFace, (0, 0))
+
+  if appState.displayMode == 'navigation_start':
+    navigationStart.draw(displayMode)
+    navigationStart.tick(20)
+
+  if appState.displayMode == 'navigation_eta':
+    navigationEta.draw(displayMode)
+    navigationEta.tick(20)
+
+  if appState.displayMode in ['navigation_left', 'navigation_right', 'navigation_forward', 'navigation_backward']:
+    direction = appState.displayMode.split('_')[1]
+    arrow.draw(gameDisplay, direction)
+    arrow.tick(direction)
+
+  if appState.displayMode == 'lol':
+    pass
+
+  if appState.displayMode == 'heart':
+    pass
 
   pygame.display.update()
-  clock.tick()
-  # myArrow.tick()
-  cat.tick()
+  clock.tick(60)
 
   if timeElapsed < 500: 
     timeElapsed = timeElapsed + 30
   else:
-    sensorHelper.tick(0.5)
+    if useSensor:
+     sensorHelper.tick(0.5)
     timeElapsed = 0
   
 
 pygame.quit()
-bleHelper.stop()
+if useBle:
+  bleHelper.stop()
 quit()
 
