@@ -72,6 +72,7 @@ beepEffect = pygame.mixer.Sound('assets/beep-05.wav')
 navigationStartSpeech = pygame.mixer.Sound('audio/map_state.wav')
 sadFaceSpeech1 = pygame.mixer.Sound('audio/sad_face_state.wav')
 sadFaceSpeech2 = pygame.mixer.Sound('audio/sad_face_state_2.wav')
+navigationDirectionSpeech = pygame.mixer.Sound('audio/navigation_state.wav')
 
 black = (0,0,0)
 white = (255,255,255)
@@ -129,6 +130,10 @@ while not crashed:
       sadFaceSpeech2.play()
     if appState.displayMode == 'navigation_start':
       navigationStartSpeech.play()
+    if appState.displayMode == 'navigation_right':
+      navigationDirectionSpeech.play()
+    if appState.displayMode == 'navigation_backward':
+      beepEffect.play()
     timeStateUnchanged = 0
   else:
     timeStateUnchanged += clock.get_time()
