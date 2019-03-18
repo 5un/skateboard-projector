@@ -6,6 +6,7 @@ from sprites.Arrow import *
 from sprites.Cat import *
 from sprites.Face import *
 from sprites.FrameAnimation import *
+from sprites.ImageSwitcher import *
 
 """Global Params"""
 useSensor = True
@@ -25,6 +26,7 @@ class AppState():
 
 """Initialize the app"""
 appState = AppState()
+previousDisplayMode = 'sleep'
 
 """Initialize connection with arduino"""
 if useSensor:
@@ -57,8 +59,15 @@ navigationStartFrames = ['assets/map-zoom0.png',
   'assets/map-zoom4.png']
 navigationStart = FrameAnimation(display_width, display_height, frames=navigationStartFrames)
 
-navigationEtaFrames = ['assets/text-display-eta.png','assets/text-15-mins.png']
+navigationEtaFrames = ['assets/text-15.png',
+  'assets/text-mins.png',
+  'assets/text-display-eta.png']
 navigationEta = FrameAnimation(display_width, display_height, frames=navigationEtaFrames)
+
+imageSwitcher = ImageSwitcher(display_width, display_height)
+
+# Sound
+beepEffect = pygame.mixer.Sound('assets/beep-05.wav')
 
 black = (0,0,0)
 white = (255,255,255)
@@ -82,6 +91,7 @@ while not crashed:
 
   gameDisplay.fill(white)
 
+  # Display
   if appState.displayMode == 'sleep':
     cat.draw(gameDisplay)
     cat.tick()
@@ -106,15 +116,21 @@ while not crashed:
     arrow.draw(gameDisplay, direction)
     arrow.tick(direction)
 
-  if appState.displayMode == 'lol':
-    pass
+  if appState.displayMode in ['lol', 'eye', 'heart']:
+    imageSwitcher.draw(gameDisplay, appState.displayMode)
 
-  if appState.displayMode == 'heart':
-    pass
+  # Sound
+  if appState.displayMode != previousDisplayMode:
+    if appState.displayMode == 'sad':
+      beepEffect.play()
 
+  previousDisplayMode = appState.displayMode
+
+  # Time
   pygame.display.update()
   clock.tick(60)
 
+  # Sensors
   if timeElapsed < 500: 
     timeElapsed = timeElapsed + 30
   else:
