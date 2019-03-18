@@ -58,3 +58,7 @@ class Arrow():
       gameDisplay.blit(self.arrowLeftImg, (self.x, self.y))
     elif direction == 'right':
       gameDisplay.blit(self.arrowRightImg, (self.x, self.y))
+    elif direction == 'forward':
+      gameDisplay.blit(self.arrowForwardImg, (self.x, self.y))
+    elif direction == 'backward':
+      gameDisplay.blit(self.arrowBackwardImg, (self.x, self.y))

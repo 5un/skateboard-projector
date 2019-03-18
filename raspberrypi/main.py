@@ -95,11 +95,11 @@ while not crashed:
 
   if appState.displayMode == 'navigation_start':
     navigationStart.draw(gameDisplay)
-    navigationStart.tick(20)
+    navigationStart.tick(clock.get_time())
 
   if appState.displayMode == 'navigation_eta':
     navigationEta.draw(gameDisplay)
-    navigationEta.tick(20)
+    navigationEta.tick(clock.get_time())
 
   if appState.displayMode in ['navigation_left', 'navigation_right', 'navigation_forward', 'navigation_backward']:
     direction = appState.displayMode.split('_')[1]
