@@ -59,8 +59,8 @@ navigationStartFrames = ['assets/map-zoom0.png',
   'assets/map-zoom4.png']
 navigationStart = FrameAnimation(display_width, display_height, frames=navigationStartFrames)
 
-navigationEtaFrames = ['assets/text-15.png',
-  'assets/text-mins.png',
+navigationEtaFrames = ['assets/text-display-15.png',
+  'assets/text-display-mins.png',
   'assets/text-display-eta.png']
 navigationEta = FrameAnimation(display_width, display_height, frames=navigationEtaFrames)
 
