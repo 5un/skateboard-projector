@@ -138,7 +138,7 @@ while not crashed:
   else:
     timeStateUnchanged += clock.get_time()
     if appState.displayMode == 'sad':
-      if timeStateUnchanged > 3000:
+      if timeStateUnchanged > 15000:
         sadFaceSpeech1.play()
         timeStateUnchanged = 0
 
