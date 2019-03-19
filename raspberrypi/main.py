@@ -10,6 +10,7 @@ from sprites.ImageSwitcher import *
 
 """Global Params"""
 useSensor = True
+useSensorTriggers = True
 useBle = True
 
 """Defines the state of the app"""
@@ -144,10 +145,6 @@ while not crashed:
 
   previousDisplayMode = appState.displayMode
 
-  # Time
-  pygame.display.update()
-  clock.tick(60)
-
   # Sensors
   if timeElapsed < 500: 
     timeElapsed = timeElapsed + 30
@@ -155,6 +152,17 @@ while not crashed:
     if useSensor:
      sensorHelper.tick(0.5)
     timeElapsed = 0
+
+  if useSensorTriggers:
+    if appState.displayMode == 'sad':
+      if (appState.pressure[0] > 0.3) or (appState.pressure[1] > 0.3):
+        appState.displayMode = 'navigation_start'
+
+  # Time
+  pygame.display.update()
+  clock.tick(60)
+
+
   
 
 pygame.quit()
