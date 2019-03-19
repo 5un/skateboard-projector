@@ -146,12 +146,16 @@ while not crashed:
   previousDisplayMode = appState.displayMode
 
   # Sensors
-  if timeElapsed < 500: 
-    timeElapsed += clock.get_time()
-  else:
-    if useSensor:
-     sensorHelper.tick(0.5)
-    timeElapsed = 0
+  if useSensor:
+    sensorHelper.tick()
+
+
+  # if timeElapsed < 500: 
+  #   timeElapsed += clock.get_time()
+  # else:
+  #   if useSensor:
+  #    sensorHelper.tick(0.5)
+  #   timeElapsed = 0
 
   if useSensorTriggers:
     if appState.displayMode == 'sad':
