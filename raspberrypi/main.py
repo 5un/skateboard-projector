@@ -147,7 +147,7 @@ while not crashed:
 
   # Sensors
   if timeElapsed < 500: 
-    timeElapsed = timeElapsed + 30
+    timeElapsed += clock.get_time()
   else:
     if useSensor:
      sensorHelper.tick(0.5)
