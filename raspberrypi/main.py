@@ -24,6 +24,7 @@ class AppState():
     self.acceleration = (0.0, 0.0, 0.0)
     self.pressure = (0.0, 0.0)
     self.isUserOnBoard = False
+    self.useSensorTriggers = False
 
 """Initialize the app"""
 appState = AppState()
@@ -157,7 +158,7 @@ while not crashed:
   #    sensorHelper.tick(0.5)
   #   timeElapsed = 0
 
-  if useSensorTriggers:
+  if useSensorTriggers and appState.useSensorTriggers:
     if appState.displayMode == 'sad':
       if (appState.pressure[0] > 0.3) or (appState.pressure[1] > 0.3):
         appState.displayMode = 'navigation_start'
