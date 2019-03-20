@@ -17,7 +17,7 @@ class SensorHelper():
     self.acceleration = (0.0, 0.0, 0.0)
     self.pressure = (0.0, 0.0)
 
-  def tick(self, seconds):
+  def tick(self):
     xr = self.board.analog[2].read()
     yr = self.board.analog[3].read()
     zr = self.board.analog[4].read()

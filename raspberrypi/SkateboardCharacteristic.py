@@ -36,7 +36,13 @@ class SkateboardCharacteristic(Characteristic):
         if len(command) >= 2:
             if command[0] in ['display', 'displayMode']:
                 self.appState.displayMode = command[1]
-
+            if command[0] == 'set':
+                if command[1] == 'sensorTrigger':
+                    if command[2] == 'on':
+                        self.appState.useSensorTriggers = True
+                    else command[2] == 'off':
+                        self.appState.useSensorTriggers = False
+ 
         # if self._updateValueCallback:
         #     print('SkateboardCharacteristic - onWriteRequest: notifying');
             

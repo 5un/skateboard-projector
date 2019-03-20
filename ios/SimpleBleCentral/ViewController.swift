@@ -30,6 +30,21 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var valueToWriteTextField: UITextField!
     @IBOutlet weak var notifiedValueLabel: UILabel!
     
+    @IBOutlet weak var btnSad: UIButton!
+    @IBOutlet weak var btnHappy: UIButton!
+    @IBOutlet weak var btnNavigationStart: UIButton!
+    
+    @IBOutlet weak var btnNavigationEta: UIButton!
+    @IBOutlet weak var btnNavigationLeft: UIButton!
+    @IBOutlet weak var btnNavigationRight: UIButton!
+    @IBOutlet weak var btnNavigationForward: UIButton!
+    @IBOutlet weak var btnEye: UIButton!
+    @IBOutlet weak var btnLol: UIButton!
+    @IBOutlet weak var btnHeart: UIButton!
+    @IBOutlet weak var btnTriggerOn: UIButton!
+    @IBOutlet weak var btnTriggerOff: UIButton!
+    
+    
     var dataCharacteristic : Characteristic?
     
     override func viewDidAppear(_ animated: Bool) {
@@ -182,6 +197,35 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    @IBAction func onWriteShortcutTapped(_ sender: UIButton) {
+        // self.write()
+        if(sender == btnSad) {
+            self.writeCommand("display sad")
+        } else if (sender == btnHappy) {
+            self.writeCommand("display happy")
+        } else if (sender == btnNavigationStart) {
+            self.writeCommand("display navigation_start")
+        } else if (sender == btnNavigationEta) {
+            self.writeCommand("display navigation_eta")
+        } else if (sender == btnNavigationLeft) {
+            self.writeCommand("display navigation_left")
+        } else if (sender == btnNavigationRight) {
+            self.writeCommand("display navigation_right")
+        } else if (sender == btnNavigationForward) {
+            self.writeCommand("display navigation_forward")
+        } else if (sender == btnEye) {
+            self.writeCommand("display eye")
+        } else if (sender == btnHeart) {
+            self.writeCommand("display heart")
+        } else if (sender == btnLol) {
+            self.writeCommand("display lol")
+        } else if (sender == btnTriggerOn) {
+            self.writeCommand("set sensorTrigger on")
+        } else if (sender == btnTriggerOff) {
+            self.writeCommand("set sensorTrigger off")
+        }
+    }
+    
     @IBAction func onWriteTapped(_ sender: Any) {
         self.write()
     }
@@ -213,6 +257,17 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
         //write a value to the characteristic
         let writeFuture = self.dataCharacteristic?.write(data:text.data(using: .utf8)!)
+        writeFuture?.onSuccess(completion: { (_) in
+            print("write succes")
+        })
+        writeFuture?.onFailure(completion: { (e) in
+            print("write failed")
+        })
+    }
+    
+    func writeCommand(_ cmd: String){
+        //write a value to the characteristic
+        let writeFuture = self.dataCharacteristic?.write(data:cmd.data(using: .utf8)!)
         writeFuture?.onSuccess(completion: { (_) in
             print("write succes")
         })
