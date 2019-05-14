@@ -40,7 +40,7 @@ class SkateboardCharacteristic(Characteristic):
                 if command[1] == 'sensorTrigger':
                     if command[2] == 'on':
                         self.appState.useSensorTriggers = True
-                    else command[2] == 'off':
+                    elif command[2] == 'off':
                         self.appState.useSensorTriggers = False
  
         # if self._updateValueCallback:
