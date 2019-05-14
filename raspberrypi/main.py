@@ -12,6 +12,13 @@ from sprites.ImageSwitcher import *
 useSensor = True
 useSensorTriggers = True
 useBle = True
+isDemoMode = True
+
+"""Demo Variables"""
+demoDisplayModes = ['sleep', 'sad', 'happy', 'navigation_start', 'navigation_eta', 'navigation_left', 'navigation_right', 
+                    'lol', 'heart']
+currentDemoDisplayModeIndex = 0
+timeSinceLastDemoDisplayMode = time.time()
 
 """Defines the state of the app"""
 class AppState():
@@ -145,6 +152,16 @@ while not crashed:
         timeStateUnchanged = 0
 
   previousDisplayMode = appState.displayMode
+
+  # Demo Mode Functionality
+  if isDemoMode:
+    if time.time() - timeSinceLastDemoDisplayMode > 8.0:
+      if currentDemoDisplayModeIndex + 1 < len(demoDisplayModes):
+        currentDemoDisplayModeIndex += 1
+      else:
+        currentDemoDisplayModeIndex = 0
+      appState.displayMode = demoDisplayModes[currentDemoDisplayModeIndex]
+      timeSinceLastDemoDisplayMode = time.time()
 
   # Sensors
   if useSensor:
